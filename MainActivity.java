@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
     //Read chosen answer and compare to correct answer, disable radio buttons accordingly
     public void CheckAnswer(View view)
     {
-
         RadioGroup radioGroup2 = findViewById(R.id.radioGroup2);
         RadioButton radioButton1 = findViewById(R.id.answer1);
         RadioButton radioButton2 = findViewById(R.id.answer2);
@@ -144,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
         String[] correctAnswers = resources.getStringArray(R.array.correctAnswers);
         String[] explanations = resources.getStringArray(R.array.explanations);
         TextView text5 = findViewById(R.id.text5);
-
-
 
         if(type == 1) {
             int correctAnswer = Integer.parseInt(correctAnswers[questionCounter]);
@@ -308,8 +305,6 @@ public class MainActivity extends AppCompatActivity {
             editBox.setEnabled(true);
             editBox.setHint("type your answer here");
         }
-
-
         text5.setText(text5value);
     }
 
@@ -328,7 +323,6 @@ public class MainActivity extends AppCompatActivity {
         text1.setGravity(Gravity.NO_GRAVITY);
 
         final int welcomeTextLenght = welcomeText.length();
-
         final char[] letters = welcomeText.toCharArray();
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -336,8 +330,8 @@ public class MainActivity extends AppCompatActivity {
             int pause = 0;
             String currentDisplay = "";
             @Override
-            public void run() {
-
+            public void run() 
+            {
                 if(counter < welcomeTextLenght && (letters[counter] == '!' || letters[counter] == '.'))
                     pause = 1;
 
@@ -371,7 +365,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Animates intro message with variable delays for characters and words
-    public void introAnim(){
+    public void introAnim()
+    {
         Resources resources = getResources();
         final TextView intro = findViewById(R.id.intro); //Using separate view for this to avoid problems with being unable to reset onClick value
 
@@ -393,7 +388,8 @@ public class MainActivity extends AppCompatActivity {
                 int thisLetterNumber = -1;
 
                 @Override
-                public void run() {
+                public void run() 
+                {
                     //Prevent index out of range
                     if(currentWord < words.length)
                     {
