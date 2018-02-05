@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         introAnim();
     }
 
-    //End programm by directing to relevant video
+    //End program by directing to relevant video
     public void watchYoutubeVideo() {
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:hH_5wEcQ2Rw"));
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=hH_5wEcQ2Rw"));
