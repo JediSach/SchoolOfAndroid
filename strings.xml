@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">My Quizz</string>
+
+    <string-array name="intro">
+        <item>Ready...</item>
+        <item>Steady...</item>
+        <item>Go!&lt;&lt;&lt;</item>
+    </string-array>
+
+    <string name="welcome">Welcome to my \n"WHICH NEXUS ARE YOU?" \nquizz! There are 9 questions and multiple answers. Chose one answer for each question. Please touch the answer you think is right. \nGood luck!</string>
+
+    <string-array name="allquestions">
+        <item>Who directed Blade Runner 2049?</item>
+        <item>Who should have directed Blade Runner 2049?</item>
+        <item>Who composed the music for Blade Runner 2049?</item>
+        <item>Who should have composed the music for Blade Runner 2049?</item>
+        <item>Which of these are replicants</item>
+        <item>What is the name of the famous space ship from Alien movie that briefly appeared in Blade Runner 2049?</item>
+        <item>What year was the original Blade Runner released?</item>
+        <item>Were you around at the time of the Original Blade Runner?</item>
+        <item>Did K die at the end of Blade Runner 2049?</item>
+    </string-array>
+
+    <string-array name="questionType">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="allanswers">
+        <item>Ridley Scott.</item>
+        <item>Denis Villeneuve.</item>
+        <item>James Cameron.</item>
+        <!---->
+        <item>Ridley Scott.</item>
+        <item>Denis Villeneuve.</item>
+        <item>James Cameron.</item>
+        <!---->
+        <item>Vangelis.</item>
+        <item>Hans Zimmer.</item>
+        <item>DJ Tiesto.</item>
+        <!---->
+        <item>Vangelis.</item>
+        <item>Hans Zimmer.</item>
+        <item>DJ Tiesto.</item>
+        <!---->
+        <item>Sapper</item>
+        <item>Mariette</item>
+        <item>Nandez</item>
+        <!---->
+        <item></item>
+        <item></item>
+        <item></item>
+        <!---->
+        <item>1980.</item>
+        <item>1982.</item>
+        <item>1984.</item>
+        <!---->
+        <item>Yes.</item>
+        <item>No.</item>
+        <item>Don\'t know.</item>
+        <!---->
+        <item>Yes.</item>
+        <item>No.</item>
+        <item>Maybe.</item>
+        <!---->
+    </string-array>
+
+    <string-array name="correctAnswers">
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>110</item>
+        <item>Nostromo</item>
+        <item>2</item>
+        <item>1</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <item>it was Denis Villeneuve this time around!</item>
+        <item>there are few movies that have such cult status as Ridley\'s original Blade Runner!</item>
+        <item>for some reason this was outsourced to Zimmerman!</item>
+        <item>Vangelis invented the Blade Runner sound and is the most accomplished composer of all time!</item>
+        <item>Nandez is a human police investigator!</item>
+        <item>the theory goes that Alien and Blade Runner are set in the same universe, as there are numerous cross-references in both franchises, therefore appearance of Nostromo in the post-apocaliptic California\'s sky is not a coincidence!</item>
+        <item>it was 36 years ago!</item>
+        <item>only those of us who watched the original cinema release can fully appreciate the world of Blade Runner!</item>
+        <item>some say he did, but we don\'t want him to die!</item>
+    </string-array>
+
+    <string-array name="resultMessages">
+        <item>No correct answers here. Maybe you came from a faulty production line. \nBut thanks for playing!</item>
+        <item>Great! You scored 1 correct answer! That makes you a \nNexus 1 or something... \nThank you for playing!</item>
+        <item>Great! You scored YOURSCORE correct answers! That makes you a \nNexus YOURSCORE or something... \nThank you for playing!"</item>
+    </string-array>
+
+</resources>
