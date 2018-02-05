@@ -44,23 +44,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //End programm by directing to relevant video
-    public void watchYoutubeVideo(){
+    public void watchYoutubeVideo() {
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:hH_5wEcQ2Rw"));
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=hH_5wEcQ2Rw"));
 
-        if((appIntent.resolveActivity(getPackageManager()) != null))
+        if ((appIntent.resolveActivity(getPackageManager()) != null))
             startActivity(appIntent);
         else
             startActivity(webIntent);
     }
 
     //Quizz is triggered by main button
-    public void questions(View view)
-    {
+    public void questions(View view) {
         questionCounter++;
         int type = 0;
         //When question counter exceeds number of available questions
-        if(theEnd == true) {
+        if (theEnd == true) {
             watchYoutubeVideo();
             finish();
         }
@@ -71,15 +70,14 @@ public class MainActivity extends AppCompatActivity {
         String[] allTypes = res.getStringArray(R.array.questionType);
 
         //Questions - answers association
-        if(questionCounter < allQuestions.length)
-        {
+        if (questionCounter < allQuestions.length) {
             String question = "";
             String answer1 = "";
             String answer2 = "";
             String answer3 = "";
             type = Integer.valueOf(allTypes[questionCounter]);
             question = allQuestions[questionCounter];
-            if(type == 1 || type == 2) {
+            if (type == 1 || type == 2) {
 
                 answer1 = allAnswers[(questionCounter + 1) * 3 - 3];
                 answer2 = allAnswers[(questionCounter + 1) * 3 - 2];
@@ -90,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
             updateDisplay(question, answer1, answer2, answer3, "", "NEXT", type);
         }
         //Sends final result message to be displayed marks end of quizz
-        if(questionCounter == allQuestions.length)
-        {
+        if (questionCounter == allQuestions.length) {
             updateDisplay(showResult(), "", "", "", "", "EXIT", type);
 
             theEnd = true;
@@ -108,25 +105,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Generates final result message based on score
-    public String showResult()
-    {
+    public String showResult() {
         Resources resources = getResources();
         String[] resultMessages = resources.getStringArray(R.array.resultMessages);
         String resultMessage = "";
 
-        if(score == 0)
+        if (score == 0)
             resultMessage = resultMessages[0];
-        if(score == 1)
+        if (score == 1)
             resultMessage = resultMessages[1];
-        if(score > 1)
+        if (score > 1)
             resultMessage = resultMessages[2].replace("YOURSCORE", String.valueOf(score));
 
         return resultMessage;
     }
 
     //Read chosen answer and compare to correct answer, disable radio buttons accordingly
-    public void CheckAnswer(View view)
-    {
+    public void CheckAnswer(View view) {
         RadioGroup radioGroup2 = findViewById(R.id.radioGroup2);
         RadioButton radioButton1 = findViewById(R.id.answer1);
         RadioButton radioButton2 = findViewById(R.id.answer2);
@@ -144,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         String[] explanations = resources.getStringArray(R.array.explanations);
         TextView text5 = findViewById(R.id.text5);
 
-        if(type == 1) {
+        if (type == 1) {
             int correctAnswer = Integer.parseInt(correctAnswers[questionCounter]);
             int actualAnswer = 0;
             radioButton1.setEnabled(false);
@@ -161,18 +156,14 @@ public class MainActivity extends AppCompatActivity {
                     actualAnswer = Integer.parseInt("3");
                     break;
             }
-            if(actualAnswer == correctAnswer)
-            {
+            if (actualAnswer == correctAnswer) {
                 note = "CORRECT - " + explanations[questionCounter];
                 score++;
-            }
-            else
-            {
+            } else {
                 note = "INCORRECT - " + explanations[questionCounter];
             }
         }
-        if(type == 2)
-        {
+        if (type == 2) {
             int correctAnswer = Integer.parseInt(correctAnswers[questionCounter]);
 
             check1.setEnabled(false);
@@ -186,44 +177,39 @@ public class MainActivity extends AppCompatActivity {
             boolean correctAnswer2 = false;
             boolean correctAnswer3 = false;
 
-            int bit1 = Integer.valueOf(String.valueOf(correctAnswer).substring(0,1));
-            int bit2 = Integer.valueOf(String.valueOf(correctAnswer).substring(1,2));
-            int bit3 = Integer.valueOf(String.valueOf(correctAnswer).substring(2,3));
+            int bit1 = Integer.valueOf(String.valueOf(correctAnswer).substring(0, 1));
+            int bit2 = Integer.valueOf(String.valueOf(correctAnswer).substring(1, 2));
+            int bit3 = Integer.valueOf(String.valueOf(correctAnswer).substring(2, 3));
 
-            if(bit1 == 1)
+            if (bit1 == 1)
                 correctAnswer1 = true;
-            if(bit2 == 1)
+            if (bit2 == 1)
                 correctAnswer2 = true;
-            if(bit3 == 1)
+            if (bit3 == 1)
                 correctAnswer3 = true;
 
-            if(check1.isChecked() == true)
+            if (check1.isChecked() == true)
                 actualAnswer1 = true;
-            if(check2.isChecked() == true)
+            if (check2.isChecked() == true)
                 actualAnswer2 = true;
-            if(check3.isChecked() == true)
+            if (check3.isChecked() == true)
                 actualAnswer3 = true;
 
-            if(correctAnswer1 == actualAnswer1 && correctAnswer2 == actualAnswer2 && correctAnswer3 == actualAnswer3)
-            {
+            if (correctAnswer1 == actualAnswer1 && correctAnswer2 == actualAnswer2 && correctAnswer3 == actualAnswer3) {
                 note = "CORRECT - " + explanations[questionCounter];
                 score++;
-            }
-            else
+            } else
                 note = "INCORRECT - " + explanations[questionCounter];
 
         }
-        if(type == 3)
-        {
+        if (type == 3) {
             String userAnswer = editBox.getText().toString();
             String correctAnswerLiteral = correctAnswers[questionCounter];
             editBox.setEnabled(false);
-            if(userAnswer.toLowerCase().equals(correctAnswerLiteral.toLowerCase()))
-            {
+            if (userAnswer.toLowerCase().equals(correctAnswerLiteral.toLowerCase())) {
                 note = "CORRECT - " + explanations[questionCounter];
                 score++;
-            }
-            else
+            } else
                 note = "INCORRECT - " + explanations[questionCounter];
         }
 
@@ -232,8 +218,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Controls visibility and values of all views
-    public  void updateDisplay(String text1value, String text2value, String text3value, String text4value, String text5value, String text6value, int type)
-    {
+    public void updateDisplay(String text1value, String text2value, String text3value, String text4value, String text5value, String text6value, int type) {
         TextView text1 = findViewById(R.id.text1);
         text1.setEnabled(false);
         text1.setVisibility(View.VISIBLE);
@@ -256,16 +241,14 @@ public class MainActivity extends AppCompatActivity {
         button.setText(text6value);
         text1.setText(text1value);
 
-        if(type == 0)
-        {
+        if (type == 0) {
             radioGroup.setVisibility(View.GONE);
             radioGroup2.setVisibility(View.GONE);
             radioGroup3.setVisibility(View.GONE);
             text5.setVisibility(View.GONE);
         }
 
-        if(type == 1)
-        {
+        if (type == 1) {
             radioGroup.setVisibility(View.VISIBLE);
             radioGroup2.setVisibility(View.GONE);
             radioGroup3.setVisibility(View.GONE);
@@ -283,8 +266,7 @@ public class MainActivity extends AppCompatActivity {
             radioButton2.setText(text3value);
             radioButton3.setText(text4value);
         }
-        if(type == 2)
-        {
+        if (type == 2) {
             radioGroup.setVisibility(View.GONE);
             radioGroup2.setVisibility(View.VISIBLE);
             radioGroup3.setVisibility(View.GONE);
@@ -296,8 +278,7 @@ public class MainActivity extends AppCompatActivity {
             check2.setText(text3value);
             check3.setText(text4value);
         }
-        if(type == 3)
-        {
+        if (type == 3) {
             radioGroup.setVisibility(View.GONE);
             radioGroup2.setVisibility(View.GONE);
             radioGroup3.setVisibility(View.VISIBLE);
@@ -305,12 +286,13 @@ public class MainActivity extends AppCompatActivity {
             editBox.setEnabled(true);
             editBox.setHint("type your answer here");
         }
+
+
         text5.setText(text5value);
     }
 
     //Animates welcome message with variable delays for characters and sentences
-    public void welcomeAnim(View view)
-    {
+    public void welcomeAnim(View view) {
         TextView intro = findViewById(R.id.intro);
         intro.setVisibility(View.GONE);
 
@@ -323,39 +305,34 @@ public class MainActivity extends AppCompatActivity {
         text1.setGravity(Gravity.NO_GRAVITY);
 
         final int welcomeTextLenght = welcomeText.length();
+
         final char[] letters = welcomeText.toCharArray();
         final Handler handler = new Handler();
         handler.post(new Runnable() {
             int counter = 0;
             int pause = 0;
             String currentDisplay = "";
+
             @Override
-            public void run() 
-            {
-                if(counter < welcomeTextLenght && (letters[counter] == '!' || letters[counter] == '.'))
+            public void run() {
+
+                if (counter < welcomeTextLenght && (letters[counter] == '!' || letters[counter] == '.'))
                     pause = 1;
 
-                if(counter < welcomeTextLenght && pause == 0)
-                {
+                if (counter < welcomeTextLenght && pause == 0) {
                     currentDisplay += letters[counter];
                     text1.setText(currentDisplay);
                     counter++;
-                }
-                else if(counter < welcomeTextLenght && pause == 1)
-                {
+                } else if (counter < welcomeTextLenght && pause == 1) {
                     currentDisplay += letters[counter];
                     text1.setText(currentDisplay);
                     counter++;
                     pause = 2;
-                }
-                else if(pause > 1)
-                {
+                } else if (pause > 1) {
                     pause++;
-                    if(pause == 50)
+                    if (pause == 50)
                         pause = 0;
-                }
-                else
-                {
+                } else {
                     Button button = findViewById(R.id.button);
                     button.setVisibility(View.VISIBLE);
                 }
@@ -365,8 +342,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Animates intro message with variable delays for characters and words
-    public void introAnim()
-    {
+    public void introAnim() {
         Resources resources = getResources();
         final TextView intro = findViewById(R.id.intro); //Using separate view for this to avoid problems with being unable to reset onClick value
 
@@ -377,64 +353,60 @@ public class MainActivity extends AppCompatActivity {
 
         final Handler handler = new Handler();
 
-            handler.post(new Runnable() {
-                String thisWord = "";
-                int currentWord = 0;
-                int wordCount = 0;
-                int direction = 0;
-                int peak = 0;
-                int cutoff = 0;
-                String currentDisplay = "";
-                int thisLetterNumber = -1;
+        handler.post(new Runnable() {
+            String thisWord = "";
+            int currentWord = 0;
+            int wordCount = 0;
+            int direction = 0;
+            int peak = 0;
+            int cutoff = 0;
+            String currentDisplay = "";
+            int thisLetterNumber = -1;
 
-                @Override
-                public void run() 
-                {
-                    //Prevent index out of range
-                    if(currentWord < words.length)
-                    {
-                        thisWord = words[currentWord];
+            @Override
+            public void run() {
+                //Prevent index out of range
+                if (currentWord < words.length) {
+                    thisWord = words[currentWord];
 
-                        int thisWordLenght = thisWord.length();
-                        char[] letters = thisWord.toCharArray();
-                        //Writing text from left to right
-                        if (direction == 0) {
-                            thisLetterNumber++;
-                            currentDisplay += letters[thisLetterNumber];
-                            intro.setText(currentDisplay);
-                            if (thisLetterNumber == thisWordLenght - 1)
-                                direction = 1;
-                        }
-                        //Recognise the word is complete
-                        else if (direction == 1) {
-                            peak++;
-                            intro.setText(currentDisplay);
-                            if (peak == 20)
-                                direction = 2;
-                        }
-                        //Deleting text from right to left
-                        else if (direction == 2 && currentWord < totalWords - 1) {
-                            cutoff++;
-                            currentDisplay = currentDisplay.substring(0, thisWordLenght - cutoff);
-                            intro.setText(currentDisplay);
-                            if (cutoff == thisWordLenght)
-                                direction = 3;
-                        }
-                        //Cycle complete, reset for next word
-                        else if(direction == 3)
-                        {
-                            currentWord++;
-                            direction = 0;
-                            cutoff = 0;
-                            peak = 0;
-                            thisLetterNumber = -1;
-                        }
-                        else
-                            intro.setEnabled(true); //Make clickable only when intro complete
-
+                    int thisWordLenght = thisWord.length();
+                    char[] letters = thisWord.toCharArray();
+                    //Writing text from left to right
+                    if (direction == 0) {
+                        thisLetterNumber++;
+                        currentDisplay += letters[thisLetterNumber];
+                        intro.setText(currentDisplay);
+                        if (thisLetterNumber == thisWordLenght - 1)
+                            direction = 1;
                     }
-                    handler.postDelayed(this, 50);
+                    //Recognise the word is complete
+                    else if (direction == 1) {
+                        peak++;
+                        intro.setText(currentDisplay);
+                        if (peak == 20)
+                            direction = 2;
+                    }
+                    //Deleting text from right to left
+                    else if (direction == 2 && currentWord < totalWords - 1) {
+                        cutoff++;
+                        currentDisplay = currentDisplay.substring(0, thisWordLenght - cutoff);
+                        intro.setText(currentDisplay);
+                        if (cutoff == thisWordLenght)
+                            direction = 3;
+                    }
+                    //Cycle complete, reset for next word
+                    else if (direction == 3) {
+                        currentWord++;
+                        direction = 0;
+                        cutoff = 0;
+                        peak = 0;
+                        thisLetterNumber = -1;
+                    } else
+                        intro.setEnabled(true); //Make clickable only when intro complete
+
                 }
-            });
-        }
+                handler.postDelayed(this, 50);
+            }
+        });
+    }
 }
