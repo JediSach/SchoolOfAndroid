@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -34,16 +35,21 @@ public class MainActivity extends AppCompatActivity {
     int score = 0;
     boolean theEnd = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //Animate and make clickable intro message
-        introAnim();
+        Context context = getApplicationContext();
+        CharSequence text = "Click here to start!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        introAnim(toast);
     }
 
-    //End program by directing to relevant video
+    //End programm by directing to relevant video
     public void watchYoutubeVideo() {
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:hH_5wEcQ2Rw"));
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=hH_5wEcQ2Rw"));
@@ -342,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Animates intro message with variable delays for characters and words
-    public void introAnim() {
+    public void introAnim(final Toast toast) {
         Resources resources = getResources();
         final TextView intro = findViewById(R.id.intro); //Using separate view for this to avoid problems with being unable to reset onClick value
 
@@ -401,8 +407,11 @@ public class MainActivity extends AppCompatActivity {
                         cutoff = 0;
                         peak = 0;
                         thisLetterNumber = -1;
-                    } else
+                    } else {
                         intro.setEnabled(true); //Make clickable only when intro complete
+                        toast.setGravity(Gravity.TOP|Gravity.LEFT, 0, 150);
+                        toast.show();
+                    }
 
                 }
                 handler.postDelayed(this, 50);
